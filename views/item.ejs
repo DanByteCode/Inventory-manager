@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Items</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <header class="header-bar">
+    <a href="/">
+      <h1>Intentory</h1>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/item">Items</a></li>
+      </ul>
+      <ul>
+        <li><a href="/category">Category</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h2>ITEMS</h2>
+  <a href="/item/create">ADD ITEM</a>
+  <main class="board">
+    <% response.forEach((i)=>{ %>
+      <article>
+        <h3>
+          <%= i.name %>
+        </h3>
+        <span>
+          Units:
+          <%= i.quantity %>
+        </span>
+        <p>
+          <%= i.description %>
+        </p>
+        <span class="tags">
+          <% i.category.forEach((c)=>{ %>
+            <a href="/category/<%= c.title %>">
+              <%= c.title %>
+            </a>
+            <% }) %>
+        </span>
+        <div class="options">
+          <a href="/item/edit/<%= i.id %>">Edit</a> |
+          <a href="/item/delete/<%= i.id %>">Delete</a>
+        </div>
+      </article>
+      <% }) %>
+  </main>
+</body>
+
+</html>

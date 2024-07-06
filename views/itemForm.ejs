@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <header class="header-bar">
+    <a href="/">
+      <h1>Intentory</h1>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/item">Items</a></li>
+      </ul>
+      <ul>
+        <li><a href="/category">Category</a></li>
+      </ul>
+    </nav>
+  </header>
+  <a class="back" href="/item">Return</a>
+  <form class="single-form" method="post">
+    <label>Name: <input name="name" type="text" value="<%= name %>" required autofocus></label>
+    <label>Quantity: <input name="quantity" type="number" value="<%= quantity %>" min="0" max="999"></label>
+    <label>Description: <input name="description" type="text" value="<%= description %>"></label>
+    <h3>Category</h3>
+    <% categoryList.forEach((c)=> { %>
+      <label>
+        <%= c.title %>
+        <input type="checkbox" 
+        name="category" 
+        value="<%= c._id %>" 
+        <% if(category.find((cat)=> cat == c.id)) { %> 
+        <%= 'checked' %> 
+        <%} %>
+        >
+      </label>
+      <% }) %>
+        <button>SEND</button>
+  </form>
+</body>
+
+</html>

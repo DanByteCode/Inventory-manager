@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <header class="header-bar">
+    <a href="/">
+      <h1>Intentory</h1>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/item">Items</a></li>
+      </ul>
+      <ul>
+        <li><a href="/category">Category</a></li>
+      </ul>
+    </nav>
+  </header>
+  <a href="/category/new">NEW</a>  
+  <main>
+    <% category.forEach((i)=>{ %>
+      <article>
+        <a href="/category/<%= i.title %>">
+          <h3>
+            <%= i.title %>
+          </h3>
+        </a>
+      </article>
+        <% }) %>
+  </main>
+</body>
+</html>
