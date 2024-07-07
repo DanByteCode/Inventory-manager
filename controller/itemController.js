@@ -1,5 +1,6 @@
 const Item = require('../models/item')
 const Category = require('../models/category')
+const config = require('../config')
 
 exports.getAllItems = async (req, res, next) => {
   const result = await Item.find({}).populate('category')
@@ -48,12 +49,23 @@ exports.editItem = async (req, res, next) => {
     }).catch(next)
 }
 
-exports.deleteItem = async (req, res, next) => {
+exports.getDelete = async (req, res, next) => {
   const { id } = req.params
-  Item.findByIdAndDelete(id)
-    .then(() => {
-      res.redirect('/item')
-    }).catch(next)
+  const find = await Item.findById(id).populate('category')
+  res.render('deleteForm', find)
+}
+
+exports.deleteItem = async (req, res, next) => {
+  const keyWord = req.body.word
+  if (keyWord === config.DEL_COMAND) {
+    const { id } = req.params
+    Item.findByIdAndDelete(id)
+      .then(() => {
+        res.redirect('/item')
+      }).catch(next)
+  } else {
+    res.redirect('/item')
+  }
 }
 
 function getValues (req) {

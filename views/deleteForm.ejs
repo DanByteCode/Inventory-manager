@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <header class="header-bar">
+    <a href="/">
+      <h1>Intentory</h1>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/item">Items</a></li>
+      </ul>
+      <ul>
+        <li><a href="/category">Category</a></li>
+      </ul>
+    </nav>
+  </header>
+  <a class="back" href="/category">Return</a>
+    <article class="item">
+      <h3>
+        <%= name %>
+      </h3>
+      <span>
+        Units:
+        <%= quantity %>
+      </span>
+      <p>
+        <%= description %>
+      </p>
+      <span class="tags">
+        <% category.forEach((c)=>{ %>
+          <span>
+            <%= c.title %>
+          </span>
+          <% }) %>
+      </span>
+    </article>
+    <form class="single-form" method="post">
+      <label>Delete code: <input name="word" type="password" value="" required autofocus></label>
+      <button>SEND</button>
+    </form>
+</body>
+
+</html>
